@@ -208,7 +208,7 @@ class HelloArRenderer(val activity: HelloArActivity) :
       virtualObjectAlbedoTexture =
         Texture.createFromAsset(
           render,
-          "models/pawn_albedo.png",
+          "models/pic1.png",
           Texture.WrapMode.CLAMP_TO_EDGE,
           Texture.ColorFormat.SRGB
         )
@@ -216,7 +216,7 @@ class HelloArRenderer(val activity: HelloArActivity) :
       virtualObjectAlbedoInstantPlacementTexture =
         Texture.createFromAsset(
           render,
-          "models/pawn_albedo_instant_placement.png",
+          "models/Paint_Metallic.png",
           Texture.WrapMode.CLAMP_TO_EDGE,
           Texture.ColorFormat.SRGB
         )
@@ -224,11 +224,11 @@ class HelloArRenderer(val activity: HelloArActivity) :
       val virtualObjectPbrTexture =
         Texture.createFromAsset(
           render,
-          "models/pawn_roughness_metallic_ao.png",
+          "models/Paint_Roughness.png",
           Texture.WrapMode.CLAMP_TO_EDGE,
           Texture.ColorFormat.LINEAR
         )
-      virtualObjectMesh = Mesh.createFromAsset(render, "models/pawn.obj")
+      virtualObjectMesh = Mesh.createFromAsset(render, "models/picture.obj")
       virtualObjectShader =
         Shader.createFromAssets(
             render,
@@ -387,6 +387,11 @@ class HelloArRenderer(val activity: HelloArActivity) :
       // Get the current pose of an Anchor in world space. The Anchor pose is updated
       // during calls to session.update() as ARCore refines its estimate of the world.
       anchor.pose.toMatrix(modelMatrix, 0)
+      val scale = 0.05f
+      val scaleMatrix = FloatArray(16)
+      Matrix.setIdentityM(scaleMatrix, 0)
+      Matrix.scaleM(scaleMatrix, 0, scale, scale, scale)
+      Matrix.multiplyMM(modelMatrix, 0, modelMatrix, 0, scaleMatrix, 0)
 
       // Calculate model/view/projection matrices
       Matrix.multiplyMM(modelViewMatrix, 0, viewMatrix, 0, modelMatrix, 0)
