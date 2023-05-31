@@ -18,6 +18,7 @@ package com.google.ar.core.examples.kotlin.helloar
 import android.opengl.GLES30
 import android.opengl.Matrix
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.google.ar.core.Anchor
@@ -205,10 +206,12 @@ class HelloArRenderer(val activity: HelloArActivity) :
         Mesh(render, Mesh.PrimitiveMode.POINTS, /*indexBuffer=*/ null, pointCloudVertexBuffers)
 
       // Virtual object to render (ARCore pawn)
+
+      val file1 = activity.file
       virtualObjectAlbedoTexture =
         Texture.createFromAsset(
           render,
-          "models/pic11.png",
+          "models/$file1.png",
           Texture.WrapMode.CLAMP_TO_EDGE,
           Texture.ColorFormat.SRGB
         )

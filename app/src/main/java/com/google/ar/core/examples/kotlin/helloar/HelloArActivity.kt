@@ -40,6 +40,8 @@ import com.google.ar.core.exceptions.UnavailableUserDeclinedInstallationExceptio
  * plane to place a 3D model.
  */
 class HelloArActivity : AppCompatActivity() {
+
+
   companion object {
     private const val TAG = "HelloArActivity"
   }
@@ -47,12 +49,16 @@ class HelloArActivity : AppCompatActivity() {
   lateinit var arCoreSessionHelper: ARCoreSessionLifecycleHelper
   lateinit var view: HelloArView
   lateinit var renderer: HelloArRenderer
+  lateinit var file: String
 
   val instantPlacementSettings = InstantPlacementSettings()
   val depthSettings = DepthSettings()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    file = intent.getStringExtra("pic").toString()
+
 
     // Setup ARCore session lifecycle helper and configuration.
     arCoreSessionHelper = ARCoreSessionLifecycleHelper(this)
